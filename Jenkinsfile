@@ -13,7 +13,7 @@ pipeline{
                 script{
                     echo "Building the docker image"
                     sh 'sudo systemctl start docker'
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                         sh "sudo docker build -t ${IMAGE_NAME} ."
                         sh 'sudo sudo docker login -u $USERNAME -p $PASSWORD'
                         sh "sudo docker push ${IMAGE_NAME}"
